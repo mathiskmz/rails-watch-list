@@ -1,0 +1,16 @@
+<h1>Lists</h1>
+<%= link_to "Add list", new_list_path %>
+
+
+<% @lists.each do |list| %>
+    <div class="card" style="width: 18rem;">
+        <img src="https://media.gqmagazine.fr/photos/603e6a8da9360b0585bcbc6a/16:9/w_2240,c_limit/108387402" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">
+                <%= list.name %>
+            </h5>
+            <p class="card-text">Infos</p>
+            <div class="btn btn-success"><%= link_to "Voir la liste", list_path(list) %></div>
+        </div>
+</div>
+<% end %>

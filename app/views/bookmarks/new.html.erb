@@ -1,0 +1,8 @@
+<h1>Add a bookmark for a movie in your list : <%= @list.name %></h1>
+<%= link_to "My lists", lists_path %>
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment %>
+  <%= f.association :movie %>
+  <%= f.submit %>
+<% end %>
