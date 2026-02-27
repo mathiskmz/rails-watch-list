@@ -1,4 +1,8 @@
 class ListsController < ApplicationController
+  
+  def homepage
+  end
+  
   def index
     @lists = List.all
   end

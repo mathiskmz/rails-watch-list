@@ -1,5 +1,5 @@
 <h1>Create a list</h1>
-<%= link_to "My lists", lists_path %>
+<%= link_to "My lists", lists_path, class:"btn btn-primary" %>
 
 <%= simple_form_for(@list) do |f| %>
   <%= f.input :name %>

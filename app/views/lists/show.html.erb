@@ -1,7 +1,7 @@
 <h1>Show the list</h1>
 <h3>🧮 <%= @list.name %></h3>
-<%= link_to "My lists", lists_path %>
-<%= link_to "Add a bookmark", new_list_bookmark_path(@list) %>
+<%= link_to "My lists", lists_path, class:"btn btn-primary" %>
+<%= link_to "Add a bookmark", new_list_bookmark_path(@list), class:"btn btn-primary" %>
 
 <% @list.movies.each do |movie| %>
     <div class="card" style="width: 18rem;">
