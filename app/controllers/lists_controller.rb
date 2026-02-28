@@ -17,16 +17,18 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    if @list.save!
+    # @list.photo_list.attach(io: @list.photo_list, filename: "list_#{@list.name}_photo", content_type: "image/avif")
+    if @list.save
       redirect_to list_path(@list)
     else
       render :new, status: :unprocessable_entity
     end
+    # raise
   end
 
   private
 
    def list_params
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :photo_list)
    end
 end

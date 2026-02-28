@@ -1,24 +1,37 @@
-<h1>Show the list</h1>
-<h3>🧮 <%= @list.name %></h3>
-<%= link_to "My lists", lists_path, class:"btn btn-primary" %>
-<%= link_to "Add a bookmark", new_list_bookmark_path(@list), class:"btn btn-primary" %>
+.<div class="container">
 
-<% @list.movies.each do |movie| %>
-    <div class="card" style="width: 18rem;">
 
-        <% @bookmark = Bookmark.find_by(movie_id: movie, list_id: @list) %>
+    <h1>Show the list</h1>
+    <h3>🧮 <%= @list.name %></h3>
+    <%= link_to "My lists", lists_path, class:"btn btn-primary" %>
+    <%= link_to "Add a bookmark", new_list_bookmark_path(@list), class:"btn btn-primary" %>
 
-        <%= link_to "Delete", 
-            bookmark_path(@bookmark),
-            data: {turbo_method: :delete, turbo_confirm: "You want to delete this bookmark ?"} %>
-
-        <img src="<%= movie.poster_url %>" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">
-                <%= movie.title %>
-            </h5>
-            <p class="card-text">Infos</p>
-            <div class="btn btn-success">à faire</div>
-        </div>
+    <div>
+        <% if @list.photo_list.attached? %>
+            <%= cl_image_tag @list.photo_list.key, height: 300, width: 400, crop: :fill %>
+        <% else %>
+            <%= image_tag "cine_placeholder.webp", height: 300, width: 400, crop: :fill %>
+        <% end %>
     </div>
-<% end %>
+
+
+    <% @list.movies.each do |movie| %>
+        <div class="card" style="width: 18rem;">
+
+            <% @bookmark = Bookmark.find_by(movie_id: movie, list_id: @list) %>
+
+            <%= link_to "Delete", 
+                bookmark_path(@bookmark),
+                data: {turbo_method: :delete, turbo_confirm: "You want to delete this bookmark ?"} %>
+
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= movie.title %>
+                </h5>
+                <p class="card-text">Infos</p>
+                <div class="btn btn-success">à faire</div>
+            </div>
+        </div>
+    <% end %>
+
+</div>
